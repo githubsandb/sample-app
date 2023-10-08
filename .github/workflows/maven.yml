@@ -48,6 +48,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml -DskipTests
+    - name: upload jar file
+      uses: actions/upload-artifact@v3
+      with:
+          name: executable-jar
+          path: target/sample-java-application.jar
       
   deploy:
     needs: [build]
