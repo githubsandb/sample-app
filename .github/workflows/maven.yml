@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: sample-java-appoication
+name: sample-java-application
 concurrency: 1
 
 on:  
@@ -48,8 +48,10 @@ jobs:
       run: mvn -B package --file pom.xml -DskipTests
       
   deploy:
-    runs-on: [self-hosted, "${{ inputs.deploys-on }}"]
+    runs-on: 
+      group: 888_ikluayping
+      labels: "${inputs.deploys-on}"
     steps:
-      - name: check host name
+      - name: check hostname
         run: hostname    
   
