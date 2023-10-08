@@ -6,7 +6,8 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Maven Build Jar
+name: sample-java-appoication
+concurrency: 1
 
 on:  
   workflow_dispatch:
@@ -47,7 +48,7 @@ jobs:
       run: mvn -B package --file pom.xml -DskipTests
       
   deploy:
-    runs-on: [self-hosted, "${{ inputs.chosen-os }}"]
+    runs-on: [self-hosted, "${{ inputs.deploys-on }}"]
     steps:
       - name: check host name
         run: hostname    
