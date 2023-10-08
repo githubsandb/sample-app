@@ -14,6 +14,7 @@ on:
     inputs:
       deploys-on:
         required: true
+        description: 'hostname project labels'
         type: choice
         options:
         - KUATLRDAPP01
@@ -52,7 +53,7 @@ jobs:
     needs: [build]
     runs-on: 
       group: 888_ikluayping
-      labels: [self-hosted,"KUATLRDAPP01"]
+      labels: [self-hosted,'${{ github.event.inputs.deploys-on }}']
     steps:
       - name: check hostname
         run: hostname    
