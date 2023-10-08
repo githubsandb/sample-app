@@ -50,7 +50,7 @@ jobs:
   deploy:
     runs-on: 
       group: 888_ikluayping
-      labels: [self-hosted,"${inputs.deploys-on}"]
+      labels: [self-hosted,"KUATLRDAPP01"]
     steps:
       - name: check hostname
         run: hostname    
