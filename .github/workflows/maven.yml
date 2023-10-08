@@ -52,7 +52,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: executable-jar
-          path: target/sample-java-application.jar
+          path: target/sample-java-application.war
       
   deploy:
     needs: [build]
@@ -62,4 +62,10 @@ jobs:
     steps:
       - name: check hostname
         run: hostname    
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: executable-jar
+      - name: deploy app
+        run: ls -altr
   
