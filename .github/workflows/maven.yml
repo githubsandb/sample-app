@@ -8,12 +8,15 @@
 
 name: Maven Build Jar
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]  
+on:  
   workflow_dispatch:
+    inputs:
+      deploys-on:
+        required: true
+        type: choice
+        options:
+        - KUATLRDAPP01
+        - KUATLRDAPP02
 
 jobs:
   unittest:
@@ -42,4 +45,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml -DskipTests
+      
+  deploy:
+    runs-on: [self-hosted, "${{ inputs.chosen-os }}"]
+    steps:
+      - name: check host name
+        run: hostname    
   
